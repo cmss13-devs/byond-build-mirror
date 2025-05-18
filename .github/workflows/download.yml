@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Mirror download page
-        run: wget --user-agent="ByondBuildMirror/1.0" -r -np -k -p https://www.byond.com/build/
+        run: wget --user-agent="ByondBuildMirror/1.0" -r -np -k -p https://www.byond.com/download/build/
 
       - name: Upload download page as artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: byond.com/
+          path: www.byond.com/
 
   deploy:
     permissions:
