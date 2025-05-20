@@ -17,7 +17,7 @@ jobs:
           key: byondmirror-${{ secrets.CACHE_PURGE_KEY }}
 
       - name: Mirror download page
-        run: wget --user-agent="ByondBuildMirror/1.0" --wait 10 --random-wait --include-directories="download/build/51*" -r -np -k -N -I -p https://www.byond.com/download/build/
+        run: wget --user-agent="ByondBuildMirror/1.0" --wait 7 --random-wait --include-directories="download/build/516","download/build/517" -r -np -k -N -I -p https://www.byond.com/download/build/
 
       - name: Upload download page as artifact
         uses: actions/upload-pages-artifact@v3
