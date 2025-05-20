@@ -10,8 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: www.byond.com/
+          key: byondmirror-${{ secrets.CACHE_PURGE_KEY }}
+
       - name: Mirror download page
-        run: wget --user-agent="ByondBuildMirror/1.0" -r -np -k -p https://www.byond.com/download/build/
+        run: wget --user-agent="ByondBuildMirror/1.0" --wait 10 --random-wait --reject "index.html*" --include-directories="download/build/51*" -r -np -k -Nnc -I -p https://www.byond.com/download/build/
 
       - name: Upload download page as artifact
         uses: actions/upload-pages-artifact@v3
