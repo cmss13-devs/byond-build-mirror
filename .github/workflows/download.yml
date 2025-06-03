@@ -18,10 +18,10 @@ jobs:
           key: byondmirror-
 
       - name: Mirror download page
+        continue-on-error: true
         run: wget --user-agent="ByondBuildMirror/1.0" --wait 7 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://www.byond.com/download/build/
 
       - name: Save cache
-        if: ${{ always() }}
         uses: actions/cache/save@v4
         with:
           path: www.byond.com/
