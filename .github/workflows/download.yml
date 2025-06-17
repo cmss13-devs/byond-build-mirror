@@ -17,7 +17,6 @@ jobs:
 
     steps:
       - name: Restore cache
-        id: restore_mirror_cache
         uses: actions/cache/restore@v4
         with:
           path: www.byond.com/
@@ -26,17 +25,18 @@ jobs:
             byondmirror-
 
       - name: Mirror download page
-        continue-on-error: true
-        run: wget --user-agent="ByondBuildMirror/1.0" --wait 7 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://www.byond.com/download/build/
+        # continue-on-error: true
+        # run: wget --user-agent="ByondBuildMirror/1.0" --wait 7 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://www.byond.com/download/build/
+        run: wget --user-agent="ByondBuildMirror/1.0" --wait 1 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://cmss13-devs.github.io/byond-build-mirror/download/build/
 
       - name: Save cache
-        id: save_mirror_cache
         uses: actions/cache/save@v4
         with:
           path: www.byond.com/
           key: byondmirror-${{ github.run_id }}
 
       - name: Cleanup old caches
+        continue-on-error: true
         run: |
           cacheKeys=$(gh cache list --key byondmirror- --json key --jq '.[].key')
 
