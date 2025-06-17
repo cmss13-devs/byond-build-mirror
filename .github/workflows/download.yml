@@ -27,7 +27,10 @@ jobs:
       - name: Mirror download page
         # continue-on-error: true
         # run: wget --user-agent="ByondBuildMirror/1.0" --wait 7 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://www.byond.com/download/build/
-        run: wget --user-agent="ByondBuildMirror/1.0" --wait 1 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://cmss13-devs.github.io/byond-build-mirror/download/build/
+        run: | 
+          wget --user-agent="ByondBuildMirror/1.0" --wait 1 --random-wait --include-directories="download/build/516","download/build/517","download/build/518" -r -np -k -N -p https://cmss13-devs.github.io/byond-build-mirror/download/build/
+          mkdir www.byond.com
+          mv cmss13-devs.github.io/byond-build-mirror/download/ www.byond.com/download/
 
       - name: Save cache
         uses: actions/cache/save@v4
