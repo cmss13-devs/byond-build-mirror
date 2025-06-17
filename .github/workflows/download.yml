@@ -38,7 +38,7 @@ jobs:
 
       - name: Cleanup old caches
         run: |
-          cacheKeys=$(gh cache list --key byondmirror- --json id --jq '.[].id')
+          cacheKeys=$(gh cache list --key byondmirror- --json key --jq '.[].key')
 
           ## Setting this to not fail the workflow while deleting cache keys.
           set +e
