@@ -9,9 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    permissions:
-      actions: write
-
     steps:
       - name: Restore cache
         id: restore_mirror_cache
